@@ -1,13 +1,22 @@
-from socket  import *
-from constCS import * #-
+from socket import *
+from constCS import *  # -
 
-s = socket(AF_INET, SOCK_STREAM) 
-s.bind((HOST, PORT))  #-
-s.listen(1)           #-
+s = socket(AF_INET, SOCK_STREAM)
+s.bind((HOST, PORT))  # -
+s.listen(1)  # -
 (conn, addr) = s.accept()  # returns new socket and addr. client 
-while True:                # forever
-  data = conn.recv(1024)   # receive data from client
-  if not data: break       # stop if client stopped
-  print(bytes.decode(data))
-  conn.send(str.encode(bytes.decode(data)+"*")) # return sent data plus an "*"
-conn.close()               # close the connection
+while True:  # forever
+  data = conn.recv(1024)  # receive data from client
+  if not data: break  # stop if client stopped
+  tipo = data.split()
+  if tipo[3] == "add":
+    result = float(tipo[1]) + float(tipo[2])
+  if tipo[3] == "subtract":
+    result = float(tipo[1]) - float(tipo[2])
+  if tipo[3] == "multiply":
+    result = float(tipo[1]) * float(tipo[2])
+  else:
+    result = 'invalid input'
+  print(bytes.decode(result))
+  conn.send(str.encode(bytes.decode(result) + "*"))  # return sent data plus an "*"
+conn.close()  # close the connection
