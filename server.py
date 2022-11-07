@@ -17,6 +17,6 @@ while True:  # forever
     result = float(tipo[1]) * float(tipo[2])
   else:
     result = 'invalid input'
-  print(bytes.decode(result))
-  conn.send(str.encode(bytes.decode(result) + "*"))  # return sent data plus an "*"
+  print("{:.2f}".format(result))
+  conn.send(str.encode("{:.2f}".format(result)))  # return sent data plus an "*"
 conn.close()  # close the connection
