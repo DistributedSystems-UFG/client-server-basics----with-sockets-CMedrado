@@ -17,6 +17,7 @@ while True:  # forever
         result = float(tipo[0]) - float(tipo[1])
     elif tipo[2] == "multiply":
         result = float(tipo[0]) * float(tipo[1])
+
     output = str(result)
     conn.send(str.encode(output))  # return sent data plus an "*"
 conn.close()  # close the connection
